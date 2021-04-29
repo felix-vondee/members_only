@@ -21,9 +21,9 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = 1
     if @post.save
-        redirect_to 
-        else
-            render:new
+        redirect_to @post 
+    else
+        render:new 
     end
   end
 
