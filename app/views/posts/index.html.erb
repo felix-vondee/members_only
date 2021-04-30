@@ -1,17 +1,23 @@
-<h1> Posts <h1>
+<h1>All Posts</h1>
 
-There are <%= Post.count %> posts and counting!!
-
-<ul>
-    <% @posts.each do |post| %>
-        <li>
-            <%= post.title %>
-            <%= post.body %>
-        </li>
-        <% if user_signed_in? %>
-            <%= post.user.name %>
-        <% end %>
-    <%end%>
-</ul>
-
+<table>
+<th>Title</th>
+<th>Body</th>
+<th>Author</th>
+<tbody>
+<% @posts.each do |post| %>
+<tr>
+    <td><%= post.title %> </td>    
+    <td><%= post.body %> </td>    
+    <td><%= post.user.name if signed_in? %> </td>
+    </tr>
+<% end %>
+</tbody>
+</table>
+<br/>
+<%= link_to 'Add Post', new_post_path if signed_in? %>
+<% if user_signed_in? %>
 <%= button_to "logout", destroy_user_session_path, method: :delete  %>
+<% else user_signed_out? %>
+<%= button_to "login", destroy_user_session_path, method: :delete  %>
+<% end %>
