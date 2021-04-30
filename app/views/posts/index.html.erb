@@ -18,6 +18,6 @@
 <%= link_to 'Add Post', new_post_path if signed_in? %>
 <% if user_signed_in? %>
 <%= button_to "logout", destroy_user_session_path, method: :delete  %>
-<% else user_signed_out? %>
-<%= button_to "login", destroy_user_session_path, method: :delete  %>
+<% else %>
+<%= link_to "sign in",  new_user_session_path %>
 <% end %>
